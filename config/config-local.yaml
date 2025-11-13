@@ -10,7 +10,7 @@ model:
     search-key: '名称'
   embedding: 
     # 知识库用于自然语言（文本）处理的模型路径
-    model-name: C:\Users\16013\.cache\modelscope\hub\iic\nlp_corom_sentence-embedding_chinese-base
+    model-name: damo/nlp_corom_sentence-embedding_chinese-base
     device: cpu
 
 database:

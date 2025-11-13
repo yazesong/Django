@@ -446,7 +446,7 @@ examples = [
 # 构建 Gradio 界面
 with gr.Blocks() as demo:
     # 标题和描述
-    gr.Markdown("# 「赛博华佗」📒\n你的健康小助手")
+    gr.Markdown("# 「AI医生」📒\n你的健康小助手")
 
     # 创建聊天布局
     with gr.Row():
@@ -461,7 +461,7 @@ with gr.Blocks() as demo:
                     {"left": "$$", "right": "$$", "display": True},
                     {"left": "$", "right": "$", "display": True},
                 ],
-                placeholder="\n## 欢迎与我对话 \n————本项目由赛博华佗团队开发",
+                placeholder="\n## 欢迎与我对话 \n————本项目由AI医生团队开发",
             )
 
     with gr.Row():
@@ -526,4 +526,5 @@ def start_gradio():
 
 
 if __name__ == "__main__":
+
     start_gradio()

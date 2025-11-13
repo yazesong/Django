@@ -1,6 +1,6 @@
 from env import get_env_value
 from abc import abstractmethod
-
+import httpx
 from openai import OpenAI
 from openai import Stream
 from openai.types.chat import ChatCompletion, ChatCompletionChunk
@@ -14,13 +14,24 @@ class LLMclientbase(object):
         """
         初始化LLM客户端基类
         """
+        api_key = get_env_value("LLM_API_KEY")
+        base_url_raw = get_env_value("LLM_BASE_URL")
+        
+        if base_url_raw and base_url_raw.strip():
+            base_url = base_url_raw.strip()
+        else:
+            base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+        http_client = httpx.Client(verify=False)
+        # ✅ 在这里打印（在变量定义之后）
+        print(f"✅ DEBUG: Using base_url = {base_url}")
+        print(f"✅ DEBUG: Using model = {get_env_value('MODEL_NAME')}")
+
         self.__client = OpenAI(
             api_key=get_env_value(
                 "LLM_API_KEY"
             ),  # 使用环境变量中的API密钥初始化OpenAI客户端
-            base_url=get_env_value(
-                "LLM_BASE_URL"
-            ),  # 使用环境变量中的基础URL初始化OpenAI客户端
+            base_url=base_url,  # 使用环境变量中的基础URL初始化OpenAI客户端
+            http_client=http_client,
         )
         self.__model_name = get_env_value("MODEL_NAME")  # 使用环境变量中的模型名称
 
